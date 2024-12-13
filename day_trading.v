@@ -5,21 +5,20 @@ module day_trading (
     output reg [15:0] action_out // 16-bit output message
 );
     // State encoding
-    typedef enum reg [2:0] {
-        IDLE            = 3'b000,
-        GET_DAY1        = 3'b001,
-        GET_DAY2        = 3'b010,
-        GET_DAY3        = 3'b011,
-        EVALUATE_TREND  = 3'b100,
-        DETERMINE_ACTION = 3'b101
-    } state_t;
+    parameter IDLE            = 3'b000;
+    parameter GET_DAY1        = 3'b001;
+    parameter GET_DAY2        = 3'b010;
+    parameter GET_DAY3        = 3'b011;
+    parameter EVALUATE_TREND  = 3'b100;
+    parameter DETERMINE_ACTION = 3'b101;
 
-    state_t current_state, next_state;
+    reg [2:0] current_state, next_state;
+
 
     // Registers to store day values and ownership
     reg [4:0] day1, day2, day3;
     reg owned;
-    
+
     reg [2:0] trend; // 000 = stagnant, 001 = increasing a lot, 010 = decreasing a lot, 011 = increasing a little, 100 = decreasing a little
 
     // State transition
