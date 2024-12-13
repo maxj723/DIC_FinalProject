@@ -19,7 +19,8 @@ module day_trading (
     // Registers to store day values and ownership
     reg [4:0] day1, day2, day3;
     reg owned;
-    reg [1:0] trend; // 00 = stagnant, 01 = increasing, 10 = decreasing
+    
+    reg [2:0] trend; // 000 = stagnant, 001 = increasing a lot, 010 = decreasing a lot, 011 = increasing a little, 100 = decreasing a little
 
     // State transition
     always @(posedge clk or posedge rst) begin
@@ -50,7 +51,7 @@ module day_trading (
             day2 <= 5'b0;
             day3 <= 5'b0;
             owned <= 1'b0;
-            trend <= 2'b00;
+            trend <= 3'b000;
             action_out <= 16'b0;
         end else begin
             case (current_state)
@@ -74,34 +75,52 @@ module day_trading (
                 EVALUATE_TREND: begin
                     // Determine trend based on day values
                     if (day1 < day2 && day2 < day3)
-                        trend <= 2'b01; // Increasing
+                        trend <= 3'b001; // Increasing a lot
                     else if (day1 > day2 && day2 > day3)
-                        trend <= 2'b10; // Decreasing
+                        trend <= 3'b010; // Decreasing a lot
+                    else if (day1 > day2 && day3 > day1)
+                        trend <= 3'b011;  // Increasing slightly
+                    else if(day1 < day2 && day3 < day1)
+                        trend <= 3'b100;   // decreasing slightly
                     else
-                        trend <= 2'b00; // Stagnant
+                        trend <= 3'b000; // Stagnant
                 end
                 DETERMINE_ACTION: begin
                     // Determine action based on trend and ownership
-                    if (trend == 2'b01) begin
+                    if (trend == 3'b001) begin // if increasing a lot
                         if (owned)
-                            action_out <= 16'h1; // "Sell"
+                            action_out <= 1; // "Sell all"
                         else
-                            action_out <= 16'h2; // "Hold"
-                    end else if (trend == 2'b10) begin
+                            action_out <= 2; // "Stay out"
+
+                    end else if (trend == 3'b010) begin // if decreasing a lot
                         if (owned)
-                            action_out <= 16'h3; // "Hold"
+                            action_out <= 3; // "Buy More"
                         else
-                            action_out <= 16'h4; // "Buy some"
+                            action_out <= 4; // "Buy a lot"
+                    end else if (trend == 3'b011) begin // if increasing some
+                        if (owned)
+                            action_out <= 5; // "Sell half"
+                        else
+                            action_out <= 2; // "Stay out"
+
+                    end else if (trend == 3'b100) begin // if decreasing some
+                        if (owned)
+                            action_out <= 6; // "Buy a little more"
+                        else
+                            action_out <= 7; // "Buy a little"
+                    end else if (trend == 3'b000) begin // stagnant trend
+                        if (owned)
+                            action_out <= 8; // "Hold"
+                        else
+                            action_out <= 7; // "Buy a little"
                     end else begin
-                        if (owned)
-                            action_out <= 16'h5; // "Sell all of it"
-                        else
-                            action_out <= 16'h6; // "Buy a lot"
+                            action_out <= 0; // Failed Calculation
                     end
                 end
                 default: begin
                     // Default state, no action
-                    action_out <= 16'b0;
+                    action_out <= 0; // Failed calculation
                 end
             endcase
         end
