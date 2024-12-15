@@ -53,6 +53,8 @@ module day_trading (
             trend <= 3'b000;
             action_out <= 16'b0;
         end else begin
+
+            // Day trading state Machine
             case (current_state)
                 IDLE: begin
                     // No action in IDLE
