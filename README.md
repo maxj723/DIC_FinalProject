@@ -14,17 +14,17 @@ The Trading Signal Generator processes a 16-bit input representing trading data 
 ### Input
 The 16-bit input is structured as follows:   
 **Bit 15 (Ownership Flag):**   
-	- **0:** Not owned   
-	- **1:** Owned   
+  - **0:** Not owned   
+  - **1:** Owned   
 **Bit [14:10] (Time 1 Price):**   
-	- Represents Price at time 1   
-	- Price range: 0 to 31 (5 bits)   
+  - Represents Price at time 1   
+  - Price range: 0 to 31 (5 bits)   
 **Bit [9:5] (Time 2 Price):**   
-	- Represents Price at time 2   
-	- Price range: 0 to 31 (5 bits)   
-**Bit [4:0] (Time 3 Price):**   
-	- Represents Price at time 3   
-	- Price range: 0 to 31 (5 bits)   
+  - Represents Price at time 2   
+  - Price range: 0 to 31 (5 bits)   
+**Bit [4:0] (Time 3 Price):**
+  - Represents Price at time 3   
+  - Price range: 0 to 31 (5 bits)   
    
 ### Output
 The 16-bit output translates to decimal integers which map as follows:
@@ -44,20 +44,20 @@ The remaining bits are left available for future expansion beyond current implem
 
 
 ### Finite State Machine:   
-  -**IDLE:**
+  - **IDLE:**
     - No action while in idle 
     - `action_out <= 16’b0;`
-  -**GET_DAY1:**
+  - **GET_DAY1:**
     - Extracts both the day 1 value as well as the ownership bit
     - `owned <= stock_in[15];`
     - `day1 <= stock_in[14:10];`
-  -**GET_DAY2:**
+  - **GET_DAY2:**
     - Extracts the day 2 value
     - `day2 <= stock_in[9:5];`	
-  -**GET_DAY3:**
+  - **GET_DAY3:**
     - Extracts the day 3 value
     - `1day3 <= stock_in[4:0];`
-  -**EVALUATE_TREND:**
+  - **EVALUATE_TREND:**
     - Determine the trend based on the given day values
-  -**DETERMINE_ACTION:**
+  - **DETERMINE_ACTION:**
     - Define output given the trend and ownership status
