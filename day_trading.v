@@ -79,9 +79,9 @@ module day_trading (
                         trend <= 3'b001; // Increasing a lot
                     else if (day1 > day2 && day2 > day3)
                         trend <= 3'b010; // Decreasing a lot
-                    else if (day1 > day2 && day3 > day1)
+                    else if ((day1 > day2 && day3 > day1) || (day3>day1 && day3<day2))
                         trend <= 3'b011;  // Increasing slightly
-                    else if(day1 < day2 && day3 < day1)
+                    else if ((day1 < day2 && day3 < day1) || (day3>day2 && day3<day1))
                         trend <= 3'b100;   // decreasing slightly
                     else
                         trend <= 3'b000; // Stagnant
