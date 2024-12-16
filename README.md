@@ -14,17 +14,17 @@ The Trading Signal Generator processes a 16-bit input representing trading data 
 ### Input
 The 16-bit input is structured as follows:   
 **Bit 15 (Ownership Flag):**   
-	- **0:** Not owned
-	- **1:** Owned
+	- **0:** Not owned   
+	- **1:** Owned   
 **Bit [14:10] (Time 1 Price):**   
-	- Represents Price at time 1
-	- Price range: 0 to 31 (5 bits)
+	- Represents Price at time 1   
+	- Price range: 0 to 31 (5 bits)   
 **Bit [9:5] (Time 2 Price):**   
-	- Represents Price at time 2
-	- Price range: 0 to 31 (5 bits)
+	- Represents Price at time 2   
+	- Price range: 0 to 31 (5 bits)   
 **Bit [4:0] (Time 3 Price):**   
-	- Represents Price at time 3
-	- Price range: 0 to 31 (5 bits)
+	- Represents Price at time 3   
+	- Price range: 0 to 31 (5 bits)   
    
 ### Output
 The 16-bit output translates to decimal integers which map as follows:
