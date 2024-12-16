@@ -1,0 +1,24 @@
+s1(13Dec2024:18:07:39):  xrun day_trading.v 
+s2(13Dec2024:18:13:02):  xrun day_trading.v 
+s3(13Dec2024:18:22:39):  xrun day_trading.v 
+s4(13Dec2024:18:23:15):  xrun day_trading.v 
+s5(13Dec2024:23:45:23):  xrun day_trading.v 
+s6(13Dec2024:23:45:45):  xrun day_trading.v day_trading_test.v 
+s7(15Dec2024:13:17:21):  xrun day_trading.v 
+s8(15Dec2024:13:17:33):  xrun day_trading.v day_trading_test.v 
+s9(15Dec2024:14:09:04):  xrun day_trading.v day_trading_test.v 
+s10(15Dec2024:14:10:04):  xrun day_trading.v day_trading_test.v 
+s11(15Dec2024:14:10:18):  xrun day_trading.v day_trading_test.v 
+s12(15Dec2024:14:14:52):  xrun day_trading.v day_trading_test.v 
+s13(15Dec2024:14:15:06):  xrun day_trading.v day_trading_test.v 
+s14(15Dec2024:14:15:15):  xrun day_trading.v day_trading_test.v 
+s15(15Dec2024:14:15:30):  xrun day_trading.v day_trading_test.v 
+s16(15Dec2024:14:16:49):  xrun day_trading.v day_trading_test.v 
+s17(15Dec2024:14:17:09):  xrun day_trading.v day_trading_test.v 
+s18(15Dec2024:14:17:22):  xrun day_trading.v day_trading_test.v 
+s19(15Dec2024:14:18:38):  xrun day_trading.v day_trading_test.v 
+s20(15Dec2024:14:20:32):  xrun day_trading.v day_trading_test.v 
+s21(15Dec2024:14:22:05):  xrun day_trading.v day_trading_test.v 
+s22(15Dec2024:14:22:50):  xrun day_trading.v day_trading_test.v 
+s23(15Dec2024:14:23:07):  xrun day_trading.v day_trading_test.v 
+s24(15Dec2024:14:23:19):  xrun day_trading.v day_trading_test.v 

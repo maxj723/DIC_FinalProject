@@ -1,0 +1,48 @@
+xrun(64): 19.03-s013: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	19.03-s013: Started on Dec 15, 2024 at 14:23:19 EST
+xrun
+	day_trading.v
+	day_trading_test.v
+Recompiling... reason: file './day_trading_test.v' is newer than expected.
+	expected: Sun Dec 15 14:23:03 2024
+	actual:   Sun Dec 15 14:23:17 2024
+file: day_trading_test.v
+	module worklib.day_trading_test:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		day_trading_test
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.day_trading_test:v <0x39a2b7d8>
+			streams:   3, words: 10418
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		          Instances  Unique
+		Modules:          2       2
+		Registers:       12      12
+		Scalar wires:     2       -
+		Vectored wires:   2       -
+		Always blocks:    3       3
+		Initial blocks:   2       2
+	Writing initial simulation snapshot: worklib.day_trading_test:v
+Loading snapshot worklib.day_trading_test:v .................... Done
+xcelium> source /escnfs/home/csesoft/cadence/installs/XCELIUM1903/tools/xcelium/files/xmsimrc
+xcelium> run
+TESTING STAGNANT TREND, NO OWNERSHIP
+TESTING STAGNANT TREND, OWNERSHIP
+TESTING STRONG INCREASING TREND, OWNERSHIP
+TESTING STRONG INCREASING TREND, NO OWNERSHIP
+TESTING STRONG DECREASING TREND, NO OWNERSHIP
+TESTING STRONG DECREASING TREND, OWNERSHIP
+TESTING WEAK DECREASING TREND, OWNERSHIP
+TESTING WEAK DECREASING TREND, NO OWNERSHIP
+TESTING WEAK INCREASING TREND, OWNERSHIP
+TESTING WEAK INCREASING TREND, NO OWNERSHIP
+TEST PASSED
+Simulation complete via $finish(1) at time 610 NS + 0
+./day_trading_test.v:96         $finish;
+xcelium> exit
+TOOL:	xrun(64)	19.03-s013: Exiting on Dec 15, 2024 at 14:23:19 EST  (total: 00:00:00)

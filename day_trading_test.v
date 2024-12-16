@@ -21,7 +21,7 @@ module day_trading_test;
 
     // Creating a task to check if output is equal to expected output
     task expect;
-    input exp_out;
+    input [15:0] exp_out;
     if(action_out !== exp_out)
         begin 
             $display("TEST FAILED");
@@ -35,8 +35,8 @@ module day_trading_test;
     // Testbench logic
     initial begin
         // Initialize inputs
-        //rst = 1;
-        //stock_in = 16'b0;
+        rst = 1;
+        stock_in = 16'b0;
         
         // Apply reset
         #10 rst = 0;
@@ -73,20 +73,23 @@ module day_trading_test;
 
         // Test case: Decreasing some, owns
         $display("TESTING WEAK DECREASING TREND, OWNERSHIP");
-        stock_in = 16'b1_01010_01100_01000  // Ownership = 1, values = 10, 12, 8
-        #1
+        stock_in = 16'b1_01010_01100_01000;  // Ownership = 1, values = 10, 12, 8
+        #60 expect(6); // expecting buy a little more
+
         // Test case: Decreasing some, don't own
         $display("TESTING WEAK DECREASING TREND, NO OWNERSHIP");
-        stock_in = 16'b0_01010_01100_01000  // Ownership = 0, values = 10, 12, 8
+        stock_in = 16'b0_01010_01100_01000;  // Ownership = 0, values = 10, 12, 8
+        #60 expect(7); // expecting buy a little
 
         // Test case: Increasing some, owns
         $display("TESTING WEAK INCREASING TREND, OWNERSHIP");
-        stock_in = 16'b1_01010_00111_01110  // Ownership = 1, values = 10, 7, 14
+        stock_in = 16'b1_01010_00111_01110;  // Ownership = 1, values = 10, 7, 14
+        #60 expect(5); // expecting sell half
 
         // Test case: increasing some, don't own
         $display("TESTING WEAK INCREASING TREND, NO OWNERSHIP");
-        stock_in = 16'b0_00101_00011_01010  // Ownership = 0, values = 5, 3, 10
-
+        stock_in = 16'b0_00101_00011_01010;  // Ownership = 0, values = 5, 3, 10
+        #60 expect(2); // expecting stay out
 
         // Confirm tests all passed
         $display("TEST PASSED");
