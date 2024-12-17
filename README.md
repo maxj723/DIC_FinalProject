@@ -39,7 +39,8 @@ The 16-bit output translates to decimal integers which map as follows:
   - **6:** Buy a little more
   - **7:** Buy a little
   - **8:** HOLD
-  - **0:** FAILED CALCULATION   
+  - **0:** FAILED CALCULATION
+
 The remaining bits are left available for future expansion beyond current implementation.   
    
 ### Code Description
